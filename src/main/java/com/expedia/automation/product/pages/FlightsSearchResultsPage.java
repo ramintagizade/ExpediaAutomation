@@ -7,17 +7,22 @@ import org.openqa.selenium.By;
 public class FlightsSearchResultsPage {
 
     public void clickSearchButton() {
-        Button button = new Button(By.xpath("//*[@id='gcw-flights-form-hp-flight']/div[contains(@class,'cols-nested')]//label[contains(@class,'search-btn-col')]/button"));
+        By searchLocator = By.xpath("//*[@id='gcw-flights-form-hp-flight']/div[contains(@class,'cols-nested')]//"
+                + "label[contains(@class,'search-btn-col')]/button");
+        Button button = new Button(searchLocator);
         button.click();
     }
 
     public String getFirstRowPrice() {
-        Label label = new Label(By.xpath("//*[@id='flightModuleList']/li[1]/div//*[@data-test-id='listing-price-dollars']"));
+        By firstRowPriceLocator = By.xpath("//*[@id='flightModuleList']/li[1]/div//*[@data-test-id='listing-price-"
+                + "dollars']");
+        Label label = new Label(firstRowPriceLocator);
         return label.getText();
     }
 
     public int getAirlinesLen() {
-       Label label = new Label();
-       return label.getLabelSize(By.xpath("//*[@id='airlines']/div/label"));
+        By airlinesLocator = By.xpath("//*[@id='airlines']/div/label");
+        Label label = new Label(airlinesLocator);
+        return label.getSize();
     }
 }

@@ -5,14 +5,26 @@ import org.openqa.selenium.By;
 
 public class TravelersPopUpWindow {
 
-    public void openTravellersWindow() {
-        Button button = new Button(By.xpath("//*[@id='traveler-selector-hp-flight']//button[contains(@class,'gcw-traveler-amount-select')]"));
+    public TravelersPopUpWindow clickIncreaseAdultsNumberButton() {
+        Button button = new Button(By.xpath("//*[@id='traveler-selector-hp-flight']//div[@class='traveler-selector-"
+                + "sinlge-room-data traveler-selector-room-data']//div[4]/button"));
         button.click();
+        return new TravelersPopUpWindow();
     }
 
-    public void clickIncreaseAdultsNumberButton() {
-        Button button = new Button(By.xpath("//*[@id='traveler-selector-hp-flight']//div[@class='traveler-selector-sinlge-room-data traveler-selector-room-data']//div[4]/button"));
+    public TravelersPopUpWindow clickDecreaseAdultsNumberButton() {
+        Button button = new Button(By.xpath("//*[@id='traveler-selector-hp-flight']//div[@class='traveler-selector-"
+                + "sinlge-room-data traveler-selector-room-data']//div[2]/button"));
         button.click();
+        return new TravelersPopUpWindow();
+    }
+
+    public FlightsPage clickCloseButton() {
+        FlightsPage flightsPage = new FlightsPage();
+        Button button = new Button(By.xpath("//*[@id='traveler-selector-hp-flight']//div[contains(@class,'menu-close')]"
+                + "//button[contains(@class,'close')]"));
+        button.click();
+        return flightsPage;
     }
 
 }

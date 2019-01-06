@@ -2,18 +2,22 @@ package com.expedia.automation.framework.ui.components;
 
 import com.expedia.automation.framework.browser.Browser;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TextField {
 
-    private WebElement textField;
+    private By locator;
+    private WebDriverWait wait;
 
     public TextField(By locator) {
-        textField = Browser.getInstance().getWrappedDriver().getDriver().findElement(locator);
+        final int timeOutInSeconds = 5;
+        this.wait = new WebDriverWait(Browser.getInstance().getWrappedDriver(), timeOutInSeconds);
+        this.locator = locator;
     }
 
     public void type(String text) {
-        textField.clear();
-        textField.sendKeys(text);
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
+        Browser.getInstance().type(locator, text);
     }
 }

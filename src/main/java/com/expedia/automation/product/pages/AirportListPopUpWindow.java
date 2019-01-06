@@ -1,18 +1,24 @@
 package com.expedia.automation.product.pages;
 
-import com.expedia.automation.framework.ui.components.TextField;
+import com.expedia.automation.framework.ui.components.Button;
 import org.openqa.selenium.By;
 
 public class AirportListPopUpWindow {
 
-    public TextField getOriginFlight() {
-        TextField textField = new TextField(By.xpath("//*[@id='flight-origin-hp-flight']"));
-        return textField;
+    public FlightsPage clickAriportLinkByText(String linkText) {
+        By airportLinkLocator = By.xpath("//div[contains(@class,'display-group-results')]//li[@class='results-item']//"
+                + "a[contains(@data-value," + linkText + ")]");
+        Button airportLinkBtn = new Button(airportLinkLocator);
+        airportLinkBtn.click();
+        return new FlightsPage();
     }
 
-    public TextField getDestinationFlight() {
-        TextField textField = new TextField(By.xpath("//*[@id='flight-destination-hp-flight']"));
-        return textField;
+    public FlightsPage clickAriportLinkByIndex(int linkIndex) {
+        By airportLinkLocator = By.xpath("//div[contains(@class,'display-group-results')]//li[@class='results-item']//"
+                + "a[@data-row=" + linkIndex + "]");
+        Button airportLinkBtn = new Button(airportLinkLocator);
+        airportLinkBtn.click();
+        return new FlightsPage();
     }
 
 }

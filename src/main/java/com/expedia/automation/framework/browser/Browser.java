@@ -5,19 +5,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public final class Browser {
 
-    private static final String WEBDRIVER_HOME = System.getenv("WEBDRIVER_HOME");
-    private static final String DRIVER_NAME = "webdriver.chrome.driver";
     private static Browser instance;
     private WebDriver webDriver;
-    private List<WebElement> webElements;
 
     public Browser() {
-        System.setProperty(DRIVER_NAME, WEBDRIVER_HOME);
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
@@ -43,18 +38,17 @@ public final class Browser {
     }
 
     public void click(By locator) {
-        webDriver.findElement(locator).click();
+        final WebElement element = webDriver.findElement(locator);
+        element.click();
     }
 
     public void type(By locator, String text) {
-        webDriver.findElement(locator).sendKeys(text);
+        final WebElement element = webDriver.findElement(locator);
+        element.sendKeys(text);
     }
 
     public String getText(By locator) {
-        return webDriver.findElement(locator).getText();
-    }
-
-    public List<WebElement> getWebElements(By locator) {
-        return webDriver.findElements(locator);
+        final WebElement element = webDriver.findElement(locator);
+        return element.getText();
     }
 }

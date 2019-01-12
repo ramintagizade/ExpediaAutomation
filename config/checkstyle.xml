@@ -66,7 +66,7 @@
         <module name="FallThrough">
             <property name="reliefPattern" value="continue in next case"/>
         </module>
-        <!--<module name="FinalLocalVariable"/>-->
+        <module name="FinalLocalVariable"/>
         <module name="HiddenField">
             <property name="ignoreConstructorParameter" value="true"/>
             <property name="ignoreSetter" value="true"/>

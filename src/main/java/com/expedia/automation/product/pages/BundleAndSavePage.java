@@ -6,8 +6,8 @@ import org.openqa.selenium.By;
 public class BundleAndSavePage {
 
     public FlightsPage clickFlightsButton() {
-        Button button = new Button(By.xpath("//*[@id='tab-flight-tab-hp']/span[1]/span"));
-        button.click();
+        final Button flightsButton = new Button(By.xpath("//*[@id='tab-flight-tab-hp']/span[1]/span"));
+        flightsButton.click();
         return new FlightsPage();
     }
 }

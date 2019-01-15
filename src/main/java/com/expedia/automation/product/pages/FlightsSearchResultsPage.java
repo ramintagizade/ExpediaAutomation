@@ -6,17 +6,20 @@ import org.openqa.selenium.By;
 public class FlightsSearchResultsPage {
 
     public String getFlightPrice(int flightIndex) {
-        final By priceLocator = By.xpath("//*[@id='flightModuleList']/li[" + flightIndex + "]//*[@data-test-id="
-                + "'listing-price-dollars']");
+        if (flightIndex < 0) {
+            throw new IllegalArgumentException(String.format("Flight index is %d. It must be greater or equal to 0",
+                    flightIndex));
+        }
+        final String priceLocatorFormat = String.format("//*[@id='flightModuleList']/li[%d]//*[@data-test-id="
+                + "'listing-price-dollars']", flightIndex);
+        final By priceLocator = By.xpath(priceLocatorFormat);
         final Label priceLabel = new Label(priceLocator);
         return priceLabel.getText();
     }
 
-    public Boolean isAirlinesIncluded() {
+    public String getAirlinesIncluded() {
         final By airlinesIncludedLocator = By.xpath("//fieldset[@id='airlines']");
         final Label airlinesIncludedLabel = new Label(airlinesIncludedLocator);
-        final int startLength = 30;
-        final String airlinesTextLength = airlinesIncludedLabel.getText();
-        return airlinesTextLength.length() > startLength;
+        return airlinesIncludedLabel.getText();
     }
 }

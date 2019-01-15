@@ -7,23 +7,27 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TextField {
 
-    private static Browser browserInstance = Browser.getInstance();
     private By locator;
     private WebDriverWait wait;
 
     public TextField(By locator) {
         final int timeOutInSeconds = 5;
-        this.wait = new WebDriverWait(browserInstance.getWrappedDriver(), timeOutInSeconds);
+        this.wait = new WebDriverWait(Browser.getInstance().getWrappedDriver(), timeOutInSeconds);
         this.locator = locator;
     }
 
     public void type(String text) {
         wait.until(ExpectedConditions.elementToBeClickable(locator));
-        browserInstance.type(locator, text);
+        Browser.getInstance().type(locator, text);
     }
 
     public void click() {
         wait.until(ExpectedConditions.elementToBeClickable(locator));
-        browserInstance.click(locator);
+        Browser.getInstance().click(locator);
+    }
+
+    public void clear() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        Browser.getInstance().clear(locator);
     }
 }

@@ -7,7 +7,6 @@ import org.openqa.selenium.By;
 public class CalendarPopUpWindow {
 
     public FlightsPage clickFirstActiveDateOfCurrentMonth() {
-
         final By firstActiveDateOfCurrentMonthLocator = By.xpath("(//div[contains(@class,'datepicker-cal-month')][1]//"
                 + "button[not(contains(@aria-hidden,'true'))])[1]");
         final Button activeDateOfCurrentMonthButton = new Button(firstActiveDateOfCurrentMonthLocator);
@@ -16,9 +15,13 @@ public class CalendarPopUpWindow {
     }
 
     public FlightsPage clickActiveDateOfCurrentMonth(int dayOfTheMonth) {
-
-        final By activeDateOfCurrentMonthLocator = By.xpath("//div[contains(@class,'datepicker-cal-month')][1]//"
-                + "button[not(contains(@aria-hidden,'true')) and @data-day=" + dayOfTheMonth + "]");
+        if (dayOfTheMonth < 0) {
+            throw new IllegalArgumentException(String.format("Day of the month is %d. It must be greater than or "
+                    + "equal to 0", dayOfTheMonth));
+        }
+        final String activeDateOfCurrentMonthLocatorFormat = String.format("//div[contains(@class,'datepicker-cal-"
+                + "month')][1]//button[not(contains(@aria-hidden,'true')) and @data-day=%d]", dayOfTheMonth);
+        final By activeDateOfCurrentMonthLocator = By.xpath(activeDateOfCurrentMonthLocatorFormat);
         final Button activeDateOfCurrentMonthButton = new Button(activeDateOfCurrentMonthLocator);
         activeDateOfCurrentMonthButton.click();
         return new FlightsPage();
@@ -41,9 +44,14 @@ public class CalendarPopUpWindow {
     }
 
     public FlightsPage clickActiveDateOfNextMonth(int dayOfTheMonth) {
-        final By activeDateOfNextMonthLocator = By.xpath("//div[contains(@class,'datepicker-cal-month')][2]//"
+        if (dayOfTheMonth < 0) {
+            throw new IllegalArgumentException(String.format("Day of the month is %d. It must be greater than or "
+                    + "equal to 0 ", dayOfTheMonth));
+        }
+        final String activeDateOfNextMonthFormat = String.format("//div[contains(@class,'datepicker-cal-month')][2]//"
                 + "button[contains(@class,'datepicker-cal-date') and not(contains(@aria-hidden,'true')) and "
-                + "@data-day=" + dayOfTheMonth + "]");
+                + "@data-day=%d]", dayOfTheMonth);
+        final By activeDateOfNextMonthLocator = By.xpath(activeDateOfNextMonthFormat);
         final Button activeDateOfNextMonthButton = new Button(activeDateOfNextMonthLocator);
         activeDateOfNextMonthButton.click();
         return new FlightsPage();

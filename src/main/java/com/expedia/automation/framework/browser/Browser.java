@@ -1,6 +1,7 @@
 package com.expedia.automation.framework.browser;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,7 +13,7 @@ public final class Browser {
     private static Browser instance;
     private WebDriver webDriver;
 
-    public Browser() {
+    private Browser() {
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
@@ -26,7 +27,13 @@ public final class Browser {
     }
 
     public void stop() {
-        webDriver.close();
+        try {
+            if (instance != null) {
+                webDriver.quit();
+            }
+        } finally {
+            instance = null;
+        }
     }
 
     public WebDriver getWrappedDriver() {
@@ -50,5 +57,11 @@ public final class Browser {
     public String getText(By locator) {
         final WebElement element = webDriver.findElement(locator);
         return element.getText();
+    }
+
+    public void clear(By locator) {
+        final WebElement element = webDriver.findElement(locator);
+        element.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        element.sendKeys(Keys.BACK_SPACE);
     }
 }

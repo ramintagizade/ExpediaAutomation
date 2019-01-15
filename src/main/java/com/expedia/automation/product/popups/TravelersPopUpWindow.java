@@ -7,14 +7,16 @@ import org.openqa.selenium.By;
 public class TravelersPopUpWindow {
 
     public void clickIncreaseAdultsNumberButton() {
-        final Button increaseAdultsNumberButton = new Button(By.xpath("//*[@id='traveler-selector-hp-flight']//"
-                + "div[contains(@class,'traveler-selector-room-data')]//div[4]/button"));
+        final By increaseAdultsBtnLocator = By.xpath("(//*[@id='traveler-selector-hp-flight']//div[contains(@class, "
+                + "'step-input-outside')])[1]//button[contains(@class, 'uitk-step-input-plus')]");
+        final Button increaseAdultsNumberButton = new Button(increaseAdultsBtnLocator);
         increaseAdultsNumberButton.click();
     }
 
     public void clickDecreaseAdultsNumberButton() {
-        final Button decreaseAdultsNumberButton = new Button(By.xpath("//*[@id='traveler-selector-hp-flight']//"
-                + "div[contains(@class,'traveler-selector-room-data')]//div[2]/button"));
+        final By decreaseAdultsBtnLocator = By.xpath("(//*[@id='traveler-selector-hp-flight']//div[contains(@class, "
+                + "'step-input-outside')])[1]//button[contains(@class, 'uitk-step-input-minus')]");
+        final Button decreaseAdultsNumberButton = new Button(decreaseAdultsBtnLocator);
         decreaseAdultsNumberButton.click();
     }
 

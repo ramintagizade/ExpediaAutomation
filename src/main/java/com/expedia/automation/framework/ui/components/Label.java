@@ -7,18 +7,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Label {
 
-    private static Browser browserInstance = Browser.getInstance();
     private By locator;
     private WebDriverWait wait;
 
     public Label(By locator) {
         final int timeOutInSeconds = 5;
-        this.wait = new WebDriverWait(browserInstance.getWrappedDriver(), timeOutInSeconds);
+        this.wait = new WebDriverWait(Browser.getInstance().getWrappedDriver(), timeOutInSeconds);
         this.locator = locator;
     }
 
     public String getText() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-        return browserInstance.getText(locator);
+        return Browser.getInstance().getText(locator);
     }
 }

@@ -22,14 +22,17 @@ public class FlightBookingTest extends BaseConfigurationTest{
         originAirportListPopUpWindow.clickAirportLinkByText("Heathrow");
         AirportListPopUpWindow destinationAirportListPopUpWindow = flightsPage.typeFlightDestination("Dublin");
         destinationAirportListPopUpWindow.clickAirportLinkByText("Ireland");
-        flightsPage.clickFlightDepartingDateTextField();
-        flightsPage.clearFlightDepartingDate();
-        LocalDate departingDate = LocalDate.of(2019, 1, 30);
-        flightsPage.typeFlightDepartingDate(departingDate);
+
+        LocalDate returningDate = LocalDate.of(2019, 7, 12);
         flightsPage.clickFlightReturningDateTextField();
         flightsPage.clearFlightReturningDate();
-        LocalDate returningDate = LocalDate.of(2019, 7, 12);
         flightsPage.typeFlightReturningDate(returningDate);
+
+        LocalDate departingDate = LocalDate.of(2019, 1, 30);
+        flightsPage.clickFlightDepartingDateTextField();
+        flightsPage.clearFlightDepartingDate();
+        flightsPage.typeFlightDepartingDate(departingDate);
+
         TravelersPopUpWindow travelersPopUpWindow = flightsPage.clickTravelersButton();
         travelersPopUpWindow.clickIncreaseAdultsNumberButton();
         travelersPopUpWindow.clickCloseButton();
@@ -50,14 +53,14 @@ public class FlightBookingTest extends BaseConfigurationTest{
         originAirportListPopUpWindow.clickAirportLinkByText("Heathrow");
         AirportListPopUpWindow destinationAirportListPopUpWindow = flightsPage.typeFlightDestination("Dublin");
         destinationAirportListPopUpWindow.clickAirportLinkByText("Ireland");
-        flightsPage.clickFlightDepartingDateTextField();
-        flightsPage.clearFlightDepartingDate();
-        LocalDate departingDate = LocalDate.of(2019, 1, 30);
-        flightsPage.typeFlightDepartingDate(departingDate);
         flightsPage.clickFlightReturningDateTextField();
         flightsPage.clearFlightReturningDate();
         LocalDate returningDate = LocalDate.of(2019, 7, 12);
         flightsPage.typeFlightReturningDate(returningDate);
+        flightsPage.clickFlightDepartingDateTextField();
+        flightsPage.clearFlightDepartingDate();
+        LocalDate departingDate = LocalDate.of(2019, 1, 30);
+        flightsPage.typeFlightDepartingDate(departingDate);
         TravelersPopUpWindow travelersPopUpWindow = flightsPage.clickTravelersButton();
         travelersPopUpWindow.clickIncreaseAdultsNumberButton();
         travelersPopUpWindow.clickCloseButton();
@@ -80,14 +83,14 @@ public class FlightBookingTest extends BaseConfigurationTest{
         originAirportListPopUpWindow.clickAirportLinkByText("Heathrow");
         AirportListPopUpWindow destinationAirportListPopUpWindow = flightsPage.typeFlightDestination("Dublin");
         destinationAirportListPopUpWindow.clickAirportLinkByText("Ireland");
-        flightsPage.clickFlightDepartingDateTextField();
-        flightsPage.clearFlightDepartingDate();
-        LocalDate departingDate = LocalDate.of(2019, 1, 30);
-        flightsPage.typeFlightDepartingDate(departingDate);
         flightsPage.clickFlightReturningDateTextField();
         flightsPage.clearFlightReturningDate();
         LocalDate returningDate = LocalDate.of(2019, 7, 12);
         flightsPage.typeFlightReturningDate(returningDate);
+        flightsPage.clickFlightDepartingDateTextField();
+        flightsPage.clearFlightDepartingDate();
+        LocalDate departingDate = LocalDate.of(2019, 1, 30);
+        flightsPage.typeFlightDepartingDate(departingDate);
         TravelersPopUpWindow travelersPopUpWindow = flightsPage.clickTravelersButton();
         travelersPopUpWindow.clickIncreaseAdultsNumberButton();
         travelersPopUpWindow.clickCloseButton();
